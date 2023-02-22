@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="./browser-compatible.js"><!-- 请置于页面最顶部 --></script>
+    <script>
+      // 设置某些浏览器禁止访问
+      // browserCompatible.ban(['edge', 'chrome', 'ie'], './browser-compatible.html');
+
+      // 设置支持firefox和chrom浏览器, all为不限制支持版本, 其他浏览器或低于设置版本不支持访问
+      browserCompatible.support({
+        edge: 112,
+        firefox: 'all',
+        chrome: 110
+      }, './browser-compatible.html?test=1111&tes2=111');
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      p {
+        text-align: center;
+      }
+
+      .browser-compatible {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        margin-top: -200px;
+        margin-left: -200px;
+        width: 400px;
+        height: 400px;
+      }
+
+      .browser-compatible h4 {
+        text-align: center;
+        color: #333;
+      }
+
+      .show-info p {
+        margin: 5px auto 0 auto;
+        padding: 5px 10px;
+        width: 200px;
+        border-radius: 5px;
+        background-color: #efefef;
+        text-align: left;
+      }
+
+      .browser-list {
+        margin: 0;
+        padding: 10px;
+        list-style: none;
+        color: #000;
+      }
+
+      .browser-list li {
+        margin-bottom: 10px;
+        text-align: center;
+      }
+
+      .browser-list a {
+        color: #00d4a6;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="browser-compatible">
+      <div class="header">
+          <div class="show-info">
+            <script>
+              var link = location.href;
+              var splitLink = link.split('?');
+              var search = splitLink[1] || [];
+              var searchMap = {};
+              var showInfo = {
+                'explore-name': '浏览器名称',
+                'limit-version': '可访问版本',
+                'current-big-version': '浏览器版本',
+              };
+
+              search = search.split('&');
+
+              for (var i = 0; i < search.length; i += 1) {
+                var item = search[i].split('=');
+                var k = item[0];
+                var v = item[1];
+
+                searchMap[k] = v;
+
+                search[i] = {
+                  key: k,
+                  value: v
+                }
+
+                if (showInfo[k]) document.write('<p><span>'+ showInfo[k] + '</span>: </span>' + v + '</span></p>');
+              }
+            </script>
+          </div>
+          <h4>非常抱歉, 当前浏览器或浏览器版本不支持访问</h4>
+          <p>请下载以下浏览器的最新版本安装, 安装后重新访问</p>
+
+          <ul class="browser-list">
+            <script>
+                var support = searchMap['support-browser'];
+                var ban = searchMap['ban-browser'];
+                var browsers = {
+                  chrome: {
+                    name: 'Google Chrome - 谷歌',
+                    link: 'https://www.google.cn/intl/zh-CN/chrome/'
+                  },
+                  firefox: {
+                    name: 'Firefox - 火狐',
+                    link: 'https://www.mozilla.org/zh-CN/firefox/browsers/'
+                  },
+                  edge: {
+                    name: 'Microsoft Edge',
+                    link: 'https://www.microsoft.com/zh-CN/edge?exp=e00&form=MA13FJ'
+                  },
+                  safari: {
+                    name: 'Safari',
+                    link: 'https://www.microsoft.com/zh-CN/edge?exp=e00&form=MA13FJ'
+                  },
+                  opera: {
+                    name: 'opera - 欧朋',
+                    link: 'https://www.opera.com/zh-cn'
+                  }
+                };
+
+                if (ban) {
+                  ban = ban.split(',');
+
+                  for (var n in browsers) {
+                    if (ban.indexOf(n) >= 0) continue;
+                    
+                    const b = browsers[n];
+
+                    document.write('<li><a href="'+ b.link + '" target="_blank">'+ b.name +'</a></li>');
+                  } 
+                }
+
+                if (support) {
+                  support = support.split(',');
+
+                  for (var i = 0; i < support.length; i += 1) {
+                    const b = browsers[support[i]];
+
+                    if (!b) continue;
+
+                    document.write('<li><a href="'+ b.link + '" target="_blank">'+ b.name +'</a></li>');
+                  } 
+                }
+            </script>
+          </ul>
+      </div>
+    </div>
+  </body>
+</html>
