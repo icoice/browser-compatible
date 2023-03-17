@@ -31,7 +31,7 @@
 
     if (ua.indexOf("Opera") > -1 || ua.indexOf("OPR") > -1) return 'opera';
     if (ua.indexOf("compatible") > -1 && ua.indexOf("MSIE") > -1) return 'ie';
-    if (!!window.ActiveXObject || "ActiveXObject" in window) return 'ie >= 11';
+    if (!!window.ActiveXObject || "ActiveXObject" in window) return 'ie';
     if (ua.indexOf("Edg")  > -1) return 'edge';
     if (ua.indexOf("Edge") > -1) return 'edge';
     if (ua.indexOf("Firefox") > -1) return 'firefox';
